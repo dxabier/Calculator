@@ -5,44 +5,57 @@ import './App.css';
 
 
 function App() {
-  const [input, setInput] = useState('');
+  let [input, setInput] = useState([]);
+  let [numero, setNumero] = useState(0);
+
 
   const manejo = (e) => {
-    // let vari = input.slice(1)
-    // setInput(eval(vari))
     let algo = document.getElementById(e.target.getAttribute('id')).innerHTML;
-    let cadena = '';
-    console.log(cadena[0] == '0', (cadena.indexOf('.') < 0))
-    console.log(cadena)
-    if (cadena[0] === '0' && (cadena.indexOf('.') < 0) ) {
-      console.log('pasa')
-      cadena += ''
-    } else {
-      console.log(algo, 'algo')
-      cadena += algo
+  
+    // Copiar el array actual usando spread operator
+    let nuevo = [...input];
+    
+    if (algo === '1' || algo === '2' || algo === '3' || algo === '4' || algo === '5' || algo === '6' || algo === '7' || algo === '8' || algo === '9') { setNumero(++numero)};
+
+    if (nuevo[0] == '0' && nuevo.indexOf('.') < 0 && numero == 0) {
+      console.log('para cero inical')
+    } else if ((nuevo[nuevo.length-1] == '+' && algo == '+') || (nuevo[nuevo.length-1] == '-' && algo == '-') || (nuevo[nuevo.length-1] == '*' && algo == '*') || (nuevo[nuevo.length-1] == '/' && algo == '/')) {
+      console.log('dos igualres')
+    } else if (nuevo[nuevo.length-1] == '+' &&  (algo == '-' || algo == '*' || algo == '/' ) || nuevo[nuevo.length-1] == '-' &&  (algo == '+' || algo == '*' || algo == '/' ) || nuevo[nuevo.length-1] == '*' &&  (algo == '-' || algo == '+' || algo == '/' ) || nuevo[nuevo.length-1] == '/' &&  (algo == '-' || algo == '*' || algo == '+' )) {
+      console.log('cambio signo')      
+      nuevo[nuevo.length-1] = algo
+      setInput(nuevo)
     }
-    console.log(cadena, 'cad')
+     else {
+      if (nuevo[0] == '0') {nuevo[0] = ''}
+      nuevo.push(algo)
+      setInput(nuevo)
+    }
     
     
-    setInput(input.splice(0,100,cadena))
+    
   }
+  
 
   return (
     <div className='container col-4'>
       <div className='row'>
-        <div id="display" className='col text-end'>{input}</div>
+        <div id="display" className='col text-end'>
+          {input}
+
+        </div>
       </div>
       <div className='row'>
-        <div id="add" className='col pad' onClick={manejo}>+</div>
-        <div id="subtract" className='col pad' onClick={manejo}>-</div>
-        <div id="multiply" className='col pad' onClick={manejo}>x</div>
-        <div id="divide" className='col pad' onClick={manejo}>/</div>
+        <div id="add" className='col pad oper' onClick={manejo}>+</div>
+        <div id="subtract" className='col pad oper' onClick={manejo}>-</div>
+        <div id="multiply" className='col pad oper' onClick={manejo}>*</div>
+        <div id="divide" className='col pad oper' onClick={manejo}>/</div>
       </div>
       <div className='row'>
         <div id="seven" className='col pad' onClick={manejo}>7</div>
         <div id="eight" className='col pad'onClick={manejo}>8</div>
         <div id="nine" className='col pad' onClick={manejo}>9</div>
-        <div id="clear" className='col pad ac' onClick={() => setInput('')}>AC</div>        
+        <div id="clear" className='col pad ac' onClick={() => {setInput(''); setNumero(0)}}>AC</div>        
       </div>
       <div className='row'>
         <div id="four" className='col pad' onClick={manejo}>4</div>
