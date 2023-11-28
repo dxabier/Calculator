@@ -1,19 +1,37 @@
-html{
+html, #root{
   font-size: 35px;
-  background-color: black;
+  background-color:peru;
 }
 
-.pad{
-  border: 1px solid black;
+.fcc{  
+  border: 3px solid black;
+  background-color: blanchedalmond;
 }
 
+/* .js{
+  background-color: bisque;
+} */
 
+.pad{  
+  font-family: 'VT323', monospace;
+  /* font-size: 40px; */
+  border: 3px solid black;  
+}
+
+.btn{
+  padding: 3px;
+}
 #display{
   height: 3rem;
-  border: 1px solid black;
-  
+  border: 5px solid black;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #FFBF00;
+}
+
+.container{
+  border: 3px solid black;  
 }
 
 .pad:hover{
-  border: 1px solid yellow;
+  background-color: yellow;
 }
